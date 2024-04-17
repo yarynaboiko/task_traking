@@ -5,15 +5,15 @@ from django.contrib.auth.models import User
 class Task(models.Model):
 
     STATUS_CHOISES = [
-        ("todo", "To Do"),
-        ("in_progress", "In Progress"),
-        ("done", "Done"),
+        ("todo", "Потрібно зробити"),
+        ("in_progress", "В процесі"),
+        ("done", "Виконано"),
     ]
 
     PRIORITY_CHOISES = [
-        ("low", "Low"),
-        ("medium", "Medium"),
-        ("high", "High"),
+        ("low", "Низький"),
+        ("medium", "Середній"),
+        ("high", "Високий"),
     ]
 
     title = models.CharField(max_length=250)

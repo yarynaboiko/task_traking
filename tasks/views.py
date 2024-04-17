@@ -1,6 +1,11 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
+
 from tasks import models
 from django.views.generic import ListView, DeleteView, CreateView
+
+from tasks.forms import TaskForm
+
 
 class TaskListView(ListView):
     model = models.Task
