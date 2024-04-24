@@ -16,12 +16,12 @@ class Task(models.Model):
         ("high", "Високий"),
     ]
 
-    title = models.CharField(max_length=250)
-    description = models.TextField()
-    status = models.CharField(max_length=20, choices=STATUS_CHOISES, default="todo")
-    priority = models.CharField(max_length=20, choices=PRIORITY_CHOISES, default="medium")
-    due_date = models.DateField(null=True, blank=True)
-    creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tasks")
+    title = models.CharField(max_length=250, verbose_name="Завдання")
+    description = models.TextField(verbose_name="Опис")
+    status = models.CharField(max_length=20, choices=STATUS_CHOISES, default="todo", verbose_name="Статус")
+    priority = models.CharField(max_length=20, choices=PRIORITY_CHOISES, default="medium", verbose_name="Пріоритет")
+    due_date = models.DateField(null=True, blank=True,verbose_name="Дата виконання")
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tasks",verbose_name="Творець")
 
     def __str__(self):
         return self.title
