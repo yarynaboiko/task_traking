@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+{% block content %}
+<div class="container">
+    {{task.title}}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <button class="btn btn-dark" type="submit">Зберегти </button>
+        <a href="{% url 'task-delete' task.pk %}" class="btn btn-secondary">Видалити</a>
+    </form>
+</div>
+
+{% endblock %}
