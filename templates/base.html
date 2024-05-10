@@ -7,10 +7,19 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-        <a class="navbar-brand" href="{% url 'task-list' %}">
+        <div class="container">
+           <a class="navbar-brand" href="{% url 'task-list' %}">
             Головна
         </a>
+
+        {% if request.user.is_authenticated %}
+          <form class = 'd-flex' action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-secondary">Вийти</button>
+            </form>
+            {% endif %}
+        </div>
+
     </nav>
 
     {% block content %}

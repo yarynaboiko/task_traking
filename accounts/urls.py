@@ -1,10 +1,8 @@
 from django.urls import path
-from tasks import views
+from accounts import views
 
 urlpatterns = [
-    path('', views.TaskListView.as_view(), name="task-list"),
-    path('create/', views.TaskCreateView.as_view(), name="task-create"),
-    path('<int:pk>/update/', views.TaskUpdateView.as_view(), name="task-update"),
-    path('<int:pk>/delete/', views.TaskDeleteView.as_view(), name="task-delete"),
-
+    path('login/', views.UserLoginView.as_view(), name='login'),
+    path('logout/', views.UserLogoutView.as_view(), name='logout'),
+    path('register/', views.UserRegisterView.as_view(), name='register'),
 ]

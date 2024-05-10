@@ -41,3 +41,5 @@ class TaskDeleteView(LoginRequiredMixin, UserIsOwnerMixin, DeleteView):
     template_name = "tasks/delete_confirmation.html"
     success_url = reverse_lazy('task-list')
 
+
+
