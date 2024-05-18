@@ -2,16 +2,25 @@
 {% block content %}
 <div class="container">
 
-    <a href="{% url 'task-create'%}" type="button" class="btn btn-outline-dark btn-lg mb-3">Додати завдання</a>
+    <a href="{% url 'task-create'%}" type="button" class="btn btn-outline-dark btn-lg mt-2">Додати завдання</a>
+
+    <br>
+
+    <form method="get" class="form-inline mb-3">
+    {{ form.status.label_tag }}
+    {{ form.status }}
+        <button type="submit" class="btn btn-outline-info my-3">Фільтрувати</button>
+    </form>
+
     <div class="list-group">
    {% for task in tasks %}
 
   <a href="{% url 'task-update' task.pk %}" class="list-group-item list-group-item-action d-flex justify-content-between" aria-current="true">
     <h5>{{task.title}}</h5>
-      <div><span class="badge text-bg-success">{{task.get_status_display}}</span>
-      <span class="badge text-bg-warning">{{task.get_priority_display}}</span>
+      <div><span class="badge bg-info-subtle text-bg-info">{{task.get_status_display}}</span>
+      <span class="badge bg-warning-subtle  text-bg-warning">{{task.get_priority_display}}</span>
       {% if task.due_date %}
-      <span class="text-info">{{ task.due_date|date:"d M"}}</span>
+      <span class="text-secondary">{{ task.due_date|date:"d M"}}</span>
       {% endif %}
       </div>
 

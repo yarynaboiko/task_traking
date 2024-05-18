@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from tasks import models
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView, DetailView
 
-from tasks.forms import TaskForm
+from tasks.forms import TaskForm, TaskFilterForm
 
 
 class TaskListView(LoginRequiredMixin, ListView):
@@ -16,9 +16,15 @@ class TaskListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.filter(creator=self.request.user)
+        status = self.request.GET.get("status", "")
+        if status:
+            queryset = queryset.filter(status=status)
         return queryset
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = TaskFilterForm(self.request.GET)
+        return context
 
 class TaskCreateView(LoginRequiredMixin, CreateView):
     model = models.Task

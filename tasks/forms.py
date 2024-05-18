@@ -14,3 +14,17 @@ class TaskForm(forms.ModelForm):
             self.fields[field].widget.attrs.update({'class': "form-control mb-2"})
 
         self.fields['due_date'].widget = forms.DateInput(attrs={"type": "date", 'class': "form-control mb-2"})
+
+
+class TaskFilterForm(forms.Form):
+    STATUS_CHOISES = [
+        ("", "Всі"),
+        ("todo", "Потрібно зробити"),
+        ("in_progress", "В процесі"),
+        ("done", "Виконано"),
+    ]
+    status = forms.ChoiceField(choices=STATUS_CHOISES, required=False, label="Статус")
+
+    def __init__(self, *args, **kwargs):
+        super(TaskFilterForm,self).__init__(*args, **kwargs)
+        self.fields["status"].widget.attrs.update({"class": "col-auto"})
